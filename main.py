@@ -7,7 +7,25 @@ import utils
 
 
 def main():
+    st.markdown(
+        """
+        <style>
+            /* Reduce top/bottom padding */
+            .block-container {
+                padding-top: 1rem;
+                padding-bottom: 5rem;
+            }
+
+            /* Center the main title */
+            h1 {
+                text-align: center;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     st.title("Royalties Dashboard")
+    st.image("assets/records1.jpg")
 
     uploaded_file = st.file_uploader("Upload a CSV", type="csv")
     
