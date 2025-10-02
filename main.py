@@ -7,7 +7,7 @@ import utils
 
 
 def main():
-    st.title("Royalties")
+    st.title("Royalties Dashboard")
 
     uploaded_file = st.file_uploader("Upload a CSV", type="csv")
     
