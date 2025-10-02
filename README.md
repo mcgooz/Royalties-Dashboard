@@ -1,6 +1,6 @@
 # Royalties Dashboard
 
-A Streamlit app to analyze and visualize track royalties for Symphonic Distribution artists/clients.
+A Streamlit app to visualise and analyse track royalties for Symphonic Distribution artists/clients.
 
 ## Features
 
