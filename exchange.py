@@ -15,7 +15,7 @@ def get_rate(usd, eur):
         print("Error getting exchange rate")
         return None
 
-# Convert USD to EUR, return Nan if can't fetch rate    
+# Convert USD to EUR, return NaN if can't fetch rate    
 def convert(amount):
     rate = get_rate("USD", "EUR")
     if rate is not None:
