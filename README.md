@@ -11,7 +11,7 @@ Try it out here: https://royalties-dashboard.streamlit.app/
 
 ## How To
 
-I've included a demo report so that anyone can test it out.
+I've included a demo report so that anyone can test it out. You'll find it in the demo_csv folder.
 
 1. Upload a royalt report in CSV format (currently only works with those from Symphonic Distribution).
 2. Filter by date range (reporting period) and/or artists
