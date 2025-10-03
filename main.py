@@ -3,48 +3,53 @@
 import streamlit as st
 
 import sorting
+import styles
 import utils
 
 
 def main():
-    st.markdown(
-        """
-        <style>
-            /* Reduce top/bottom padding */
-            .block-container {
-                padding-top: 1rem;
-                padding-bottom: 5rem;
-            }
-
-            /* Center the main title */
-            h1 {
-                text-align: center;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    st.set_page_config(page_title="Royalties Dashboard", page_icon=None, layout="wide", initial_sidebar_state=None, menu_items=None)
+    st.html(styles.custom_css)
     st.title("Royalties Dashboard")
-    st.image("assets/records1.jpg")
+    st.image("assets/records1.jpg", width="stretch")
 
     uploaded_file = st.file_uploader("Upload a CSV", type="csv")
     
     if uploaded_file is not None:
+
+        # Load data from pd read util    
         df = utils.load_csv(uploaded_file)
-        tracks = df["Track Title"].unique()
-        dates = sorting.filter_by_date(df)
+        if df is not None:
+            tracks = df["Track Title"].unique()
 
-        df_dated = df[df["Activity Period"].isin(dates)]
+            col1, col2 = st.columns(2)
 
-        grouped = sorting.group_by_track(df_dated, tracks).sort_values(by="Count", ascending=False)
-        
-        
-        with st.expander("Overview", expanded=True):            
-            st.dataframe(grouped, selection_mode="single-row", hide_index=True)
+            with col1:  
+                dates = sorting.filter_by_date(df)
 
-        option = utils.select(tracks)
-        sorting.dsp_view(df_dated, option)
-        sorting.country_view(df_dated, option)
+            with col2:
+                artists = sorting.filter_by_artist(df)
+
+            df_filtered = df.copy()
+
+            if dates:
+                df_filtered = df_filtered[df_filtered["Activity Period"].isin(dates)]
+
+            if artists:
+                df_filtered = df_filtered[df_filtered["Track Artists"].isin(artists)]
+
+            grouped = sorting.group_by_track(df_filtered, tracks).sort_values(by="Count", ascending=False)
+            
+            
+            with st.expander("Overview", expanded=True):            
+                st.dataframe(grouped, selection_mode="single-row", hide_index=True)
+
+            # Only pass filtered tracks (date, artist) to dropdown
+            filtered_tracks = df_filtered["Track Title"].unique()
+            option = utils.select(filtered_tracks)
+
+            sorting.dsp_view(df_filtered, option)
+            sorting.country_view(df_filtered, option)
 
 if __name__ == "__main__":
     main()

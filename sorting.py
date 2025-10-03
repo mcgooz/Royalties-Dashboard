@@ -14,13 +14,28 @@ def filter_by_date(df):
 
 
     selected_period = st.segmented_control(
-        "Select reporting period",
+        "Filter by reporting period",
         sorted_dates,
         default=list(sorted_dates),
         selection_mode="multi"
     )
 
     return selected_period
+
+
+# Filter by Artist
+def filter_by_artist(df):
+    filtered_artist = df["Release Artists"].unique()
+
+    selected_artist = st.segmented_control(
+        "Filter by artist",
+        filtered_artist,
+        default=list(filtered_artist),
+        selection_mode="multi"
+    )
+
+    return selected_artist
+
 
 # Filter and group by track title
 def group_by_track(df, tracks):
