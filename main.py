@@ -14,6 +14,10 @@ def main():
     st.image("assets/records1.jpg", width="stretch")
 
     uploaded_file = st.file_uploader("Upload a CSV", type="csv")
+
+    if not uploaded_file:
+        st.html(
+            "<span><a style='text-decoration: none' href='https://github.com/mcgooz/Royalties-Dashboard/tree/main/demo_csv' target='_blank' rel='noopener noreferrer''>Grab a demo CSV file here</a></span>")
     
     if uploaded_file is not None:
 
