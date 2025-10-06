@@ -17,7 +17,7 @@ def main():
 
     if not uploaded_file:
         st.html(
-            "<span><a style='text-decoration: none' href='https://github.com/mcgooz/Royalties-Dashboard/tree/main/demo_csv' target='_blank' rel='noopener noreferrer''>Grab a demo CSV file here</a></span>")
+            "<span><a style='text-decoration: none' href='https://github.com/mcgooz/Royalties-Dashboard/blob/main/demo_csv/example_report.csv' target='_blank' rel='noopener noreferrer''>Grab a demo CSV file here</a></span>")
     
     if uploaded_file is not None:
 
@@ -42,7 +42,7 @@ def main():
             if artists:
                 df_filtered = df_filtered[df_filtered["Track Artists"].isin(artists)]
 
-            grouped = sorting.group_by_track(df_filtered, tracks).sort_values(by="Count", ascending=False)
+            grouped = sorting.group_by_track(df_filtered, tracks).sort_values(by="Streams", ascending=False)
             
             
             with st.expander("Overview", expanded=True):            

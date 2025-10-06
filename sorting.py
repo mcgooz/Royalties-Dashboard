@@ -44,12 +44,16 @@ def group_by_track(df, tracks):
     # Convert to EUR and add column 
     filtered["Royalty (EUR €)"] = exchange.convert(filtered["Royalty ($US)"])
 
+    filtered["Streams"] = filtered.loc[filtered["Delivery"]== "Streaming", "Count"]
+    filtered["Downloads"] = filtered.loc[filtered["Delivery"]== "Download", "Count"]
+
 
     # Group count and royalties per track, include mix version
     grouped = (
         filtered.groupby(["Track Title", "Mix Version"], dropna=False)
         .agg({
-            "Count": "sum",
+            "Streams": "sum",
+            "Downloads": "sum",
             "Royalty ($US)": "sum",
             "Royalty (EUR €)": "sum"
         })
@@ -57,6 +61,7 @@ def group_by_track(df, tracks):
     )
 
     return grouped
+
 
 # Filter and display by DSP
 def dsp_view(df, option):
