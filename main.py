@@ -42,7 +42,8 @@ def main():
             if artists:
                 df_filtered = df_filtered[df_filtered["Track Artists"].isin(artists)]
 
-            grouped = sorting.group_by_track(df_filtered, tracks).sort_values(by="Streams", ascending=False)
+            # grouped = sorting.group_by_track(df_filtered, tracks).sort_values(by="Streams", ascending=False)
+            grouped = sorting.group_by_track(df_filtered, tracks)
             
             
             with st.expander("Overview", expanded=True):            

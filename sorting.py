@@ -60,6 +60,18 @@ def group_by_track(df, tracks):
         .reset_index()
     )
 
+    grouped = grouped.sort_values(by="Streams", ascending=False, ignore_index=True)
+
+    # Add totals to bottom of list
+    totals = grouped[["Streams", "Downloads", "Royalty ($US)", "Royalty (EUR €)"]].sum(numeric_only=True)
+    totals_row = pd.DataFrame([{
+        "Track Title": "Total",
+        "Mix Version": "",
+        **totals.to_dict()
+    }])
+
+    grouped = pd.concat([grouped, totals_row], ignore_index=True)
+
     return grouped
 
 
