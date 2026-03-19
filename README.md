@@ -1,6 +1,7 @@
 # Royalties Dashboard
 
-A Streamlit app to visualise and analyse track royalties for Symphonic Distribution artists/clients.   
+A Streamlit app to visualise and analyse track royalties for Symphonic Distribution artists/clients.  
+
 Try it out here: https://royalties-dashboard.streamlit.app/
 
 Manually tracking monthly royalties from CSV reports is tedious and error-prone. This dashboard automates the process, turning raw data into clear, visual insights in seconds.
@@ -13,7 +14,7 @@ Manually tracking monthly royalties from CSV reports is tedious and error-prone.
 
 ## How To
 
-**Try It Out**: A sample royalty report (demo_report.csv) is included in the demo_csv folder. Select the file, download the raw file, and upload it via the form to explore the dashboard's features immediately.
+**Try It Out**: A sample royalty report, `demo_report.csv`, is included in the `demo_csv` folder. Download the raw file and upload it via the form to explore the dashboard.
 
 1. **Upload Your Data**: Click 'Browse files' and select your royalty report, or drag and drop (must be a CSV file from Symphonic Distribution). The app will automatically process and validate the data.
 2. **Filter Your View**: Use the sidebar filters to select a specific reporting period or focus on royalties for a single artist
